@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HotelmanagementModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="booking">
+    <Key>
+      <PropertyRef Name="bookingid" />
+    </Key>
+    <Property Name="bookingid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="roomid" Type="Int32" Nullable="false" />
+    <Property Name="bookingdate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="bookingstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="room" Relationship="Self.FK_bookings_room" FromRole="bookings" ToRole="rooms" />
+  </EntityType>
+  <EntityType Name="hotel">
+    <Key>
+      <PropertyRef Name="hotelid" />
+    </Key>
+    <Property Name="hotelid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hotelname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pincode" Type="Int32" Nullable="false" />
+    <Property Name="contactnumber" Type="Int32" Nullable="false" />
+    <Property Name="contactperson" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="website" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="isdelete" Type="Boolean" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="updatedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="rooms" Relationship="Self.FK_room_hotels" FromRole="hotels" ToRole="rooms" />
+  </EntityType>
+  <EntityType Name="room">
+    <Key>
+      <PropertyRef Name="roomid" />
+    </Key>
+    <Property Name="roomid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hotelid" Type="Int32" Nullable="false" />
+    <Property Name="roomname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="roomcategory" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="roomprice" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="isactive" Type="Boolean" Nullable="false" />
+    <Property Name="isdelete" Type="Boolean" Nullable="false" />
+    <Property Name="createddate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updateddate" Type="DateTime" Precision="3" />
+    <Property Name="createdby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="updatedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="bookings" Relationship="Self.FK_bookings_room" FromRole="rooms" ToRole="bookings" />
+    <NavigationProperty Name="hotel" Relationship="Self.FK_room_hotels" FromRole="rooms" ToRole="hotels" />
+  </EntityType>
+  <Association Name="FK_bookings_room">
+    <End Role="rooms" Type="Self.room" Multiplicity="1" />
+    <End Role="bookings" Type="Self.booking" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="rooms">
+        <PropertyRef Name="roomid" />
+      </Principal>
+      <Dependent Role="bookings">
+        <PropertyRef Name="roomid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_room_hotels">
+    <End Role="hotels" Type="Self.hotel" Multiplicity="1" />
+    <End Role="rooms" Type="Self.room" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="hotels">
+        <PropertyRef Name="hotelid" />
+      </Principal>
+      <Dependent Role="rooms">
+        <PropertyRef Name="hotelid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HotelmanagementEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="bookings" EntityType="Self.booking" />
+    <EntitySet Name="hotels" EntityType="Self.hotel" />
+    <EntitySet Name="rooms" EntityType="Self.room" />
+    <AssociationSet Name="FK_bookings_room" Association="Self.FK_bookings_room">
+      <End Role="rooms" EntitySet="rooms" />
+      <End Role="bookings" EntitySet="bookings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_room_hotels" Association="Self.FK_room_hotels">
+      <End Role="hotels" EntitySet="hotels" />
+      <End Role="rooms" EntitySet="rooms" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

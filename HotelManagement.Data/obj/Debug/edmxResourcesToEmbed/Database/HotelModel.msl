@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HotelmanagementModelStoreContainer" CdmEntityContainer="HotelmanagementEntities">
+    <EntitySetMapping Name="bookings">
+      <EntityTypeMapping TypeName="HotelmanagementModel.booking">
+        <MappingFragment StoreEntitySet="bookings">
+          <ScalarProperty Name="bookingid" ColumnName="bookingid" />
+          <ScalarProperty Name="roomid" ColumnName="roomid" />
+          <ScalarProperty Name="bookingdate" ColumnName="bookingdate" />
+          <ScalarProperty Name="bookingstatus" ColumnName="bookingstatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="hotels">
+      <EntityTypeMapping TypeName="HotelmanagementModel.hotel">
+        <MappingFragment StoreEntitySet="hotels">
+          <ScalarProperty Name="hotelid" ColumnName="hotelid" />
+          <ScalarProperty Name="hotelname" ColumnName="hotelname" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="pincode" ColumnName="pincode" />
+          <ScalarProperty Name="contactnumber" ColumnName="contactnumber" />
+          <ScalarProperty Name="contactperson" ColumnName="contactperson" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="facebook" ColumnName="facebook" />
+          <ScalarProperty Name="twitter" ColumnName="twitter" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="isdelete" ColumnName="isdelete" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="rooms">
+      <EntityTypeMapping TypeName="HotelmanagementModel.room">
+        <MappingFragment StoreEntitySet="rooms">
+          <ScalarProperty Name="roomid" ColumnName="roomid" />
+          <ScalarProperty Name="hotelid" ColumnName="hotelid" />
+          <ScalarProperty Name="roomname" ColumnName="roomname" />
+          <ScalarProperty Name="roomcategory" ColumnName="roomcategory" />
+          <ScalarProperty Name="roomprice" ColumnName="roomprice" />
+          <ScalarProperty Name="isactive" ColumnName="isactive" />
+          <ScalarProperty Name="isdelete" ColumnName="isdelete" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="updateddate" ColumnName="updateddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="updatedby" ColumnName="updatedby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
